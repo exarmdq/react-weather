@@ -1,5 +1,4 @@
 import { getConversion } from './getConversion'
-// import {API_KEY, API_URL} from './settings'
 
 const responseTodata = apiResponse => {
   const { name } = apiResponse
@@ -11,7 +10,7 @@ const responseTodata = apiResponse => {
 }
 
 export function getCurrentWeather ({ cytiId }) {
-  // return fetch(`${API_URL}/weather?id=${cytiId}&appid=${API_KEY}`)
+  // return fetch(`${process.env.REACT_APP_API_URL}/weather?id=${cytiId}&appid=${process.env.REACT_APP_API_KEY}`)
   return fetch('./jsonCurrent.json')
     .then(res => res.json())
     .then(responseTodata)

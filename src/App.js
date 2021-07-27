@@ -22,11 +22,14 @@ function App () {
       <section className="section">
         <div className="container">
           <h1 className="title">React Weather</h1>
+          <div></div>
+          <div className="select">
           <select value={getState} onChange={selectHandler}>
             {cyties.map(({ id, name }) => (
               <option key={id} value={id}>{name}</option>
             ))}
           </select>
+          </div>
           <WeatherCurrent cytiId={getState}></WeatherCurrent>
         </div>
       </section>
