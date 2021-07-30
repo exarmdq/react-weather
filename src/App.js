@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import WeatherCurrent from './components/WeatherCurrent'
+import CurrentWeather from './components/CurrentWeather'
+import ForecastWeather from './components/ForecastWeather'
 import './App.css'
 
 const cyties = [
@@ -19,18 +20,20 @@ function App () {
 
   return (
     <div className="App">
-      <section className="section">
+      <section className="section weather">
         <div className="container">
           <h1 className="title">React Weather</h1>
           <div></div>
-          <div className="select">
+          <div className="select weather__select">
           <select value={getState} onChange={selectHandler}>
+            <option>Seleccione una ciudad</option>
             {cyties.map(({ id, name }) => (
               <option key={id} value={id}>{name}</option>
             ))}
           </select>
           </div>
-          <WeatherCurrent cytiId={getState}></WeatherCurrent>
+          <CurrentWeather cytiId={getState}></CurrentWeather>
+          <ForecastWeather cytiId={getState}></ForecastWeather>
         </div>
       </section>
     </div>
