@@ -1,0 +1,32 @@
+
+.current-weather{
+  margin-bottom: 20px;
+}
+.current-weather__description{
+  text-transform: uppercase;
+  font-weight: bold;
+  color:var(--main-color)
+}
+
+.current-weather__temp-m{
+  font-size: 18px;
+  font-weight: bold;
+  color:var(--main-color)
+}
+.current-weather__temp-m span{
+  font-size: 22px;
+  color:#000;
+}
+.current-weather__table{
+  width: 100%;
+}
+.current-weather__table td:nth-child(1){
+  text-align: left;
+}
+.current-weather__table td:nth-child(2) { 
+ font-size: 20px; 
+ text-align: right;
+}
+.current-weather__table tr:last-child td{
+  border:none;
+}

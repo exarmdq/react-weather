@@ -1,0 +1,17 @@
+.onecall-weather{
+  margin-bottom: 20px;
+}
+.onecall-weather__date{
+  font-size: 18px;
+  color:var(--main-color);
+}
+.onecall-weather__temp{
+  font-size: 12px;
+  text-align: center;
+}
+.onecall-weather__description{
+  text-transform: uppercase;
+  text-align: center;
+  color:var(--main-color);
+  margin-bottom: 5px;
+}
