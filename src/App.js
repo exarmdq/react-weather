@@ -1,25 +1,23 @@
 import React, { useState } from 'react'
 import ErrorMessage from './Components/ErrorMessage'
 import OneCallWeather from './Components/OneCallWeather'
-import { cities } from './Services/defaultCities'
+import Select from './Components/Select'
+import useGeoLocation from './Hooks/useGeoLocation'
 
 function App () {
-  const [getState, setGetState] = useState(cities[0])
+  const geoLocation = useGeoLocation()
+  const [state, setstate] = useState(geoLocation)
 
-  const selectHandler = (event) => {
-    const id = parseInt(event.target.value)
-    if (id === 0) {
-      setGetState(cities[0])
-    } else {
-      const citi = cities.filter(obj => {
-        return obj.id === id
-      })
-      setGetState(citi[0])
-    }
+  const setCity = (city) => {
+    const location = { lon: city.coord.lon, lat: city.coord.lat }
+    setstate(location)
   }
 
   const setting = !(!process.env.REACT_APP_API_URL || !process.env.REACT_APP_API_KEY)
-  const location = getState ? { lon: getState.coord.lon, lat: getState.coord.lat } : ''
+
+  const isGeoLocation = geoLocation.loaded === false ? <ErrorMessage message="Acepte permisos de ubicación o seleccione una"/> : <OneCallWeather location={state} />
+
+  const oneCallWeather = setting ? isGeoLocation : <ErrorMessage message="Configurar el API_KEY"/>
 
   return (
       <section className="section weather">
@@ -27,17 +25,9 @@ function App () {
           <h1 className="title">React Weather</h1>
           <div></div>
           <div className="select weather__select">
-          <select value={getState.id} onChange={selectHandler}>
-            <option value='0'>Seleccione una ciudad</option>
-            {cities.map(({ id, name }) => (
-              <option key={id} value={id}>{name}</option>
-            ))}
-          </select>
+            <Select setCity={setCity} />
           </div>
-          {setting
-            ? <OneCallWeather location={location} />
-            : <ErrorMessage message="Configurar el API_KEY"/>
-          }
+          {oneCallWeather}
 
         </div>
       </section>

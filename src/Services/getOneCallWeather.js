@@ -1,6 +1,5 @@
 
 const responseTodata = apiResponse => {
-  console.log(apiResponse)
   if (apiResponse.cod) return apiResponse
   const { daily = [], current } = apiResponse
   if (Array.isArray(daily)) {
@@ -28,7 +27,7 @@ const responseTodata = apiResponse => {
 export function getOneCallWeather ({ location }) {
   // console.log(`${process.env.REACT_APP_API_URL}/onecall?lat=${location.lat}&lon=${location.lon}&exclude=minutely,hourly,alerts&appid=${process.env.REACT_APP_API_KEY}&lang=es&units=metric`)
   return fetch(`${process.env.REACT_APP_API_URL}/onecall?lat=${location.lat}&lon=${location.lon}&exclude=minutely,hourly,alerts&appid=${process.env.REACT_APP_API_KEY}&lang=es&units=metric`)
-    // return fetch('./jsonOneCall.json')
+  // return fetch('./jsonOneCall.json')
     .then(res => res.json())
     .then(responseTodata)
 }
